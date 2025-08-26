@@ -230,10 +230,10 @@ async def confirm_booking(req: BookingRequest):
 
     try:
         # Idempotency: if already booked, return same booking_id
-        for b in bookings.values():
+        for booking_id, b in bookings.items():
             if b["hold_id"] == req.hold_id:
                 return generate_http_success_response(
-                    200, data={"booking_id": booking_id}
+                    200, detail="Alread booked", data={"booking_id": booking_id}
                 )
 
         async with lock:
