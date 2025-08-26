@@ -80,6 +80,21 @@ bookings = {
 
 ---
 
+## ⚖️ Trade-offs
+
+- Currently using a **single `asyncio.Lock`** to handle concurrent seat-hold updates.  
+- Python threads are "safe" because of the **Global Interpreter Lock (GIL)**, which ensures only one thread executes Python bytecode at a time.  
+- This approach **guarantees correctness** (no race conditions in seat availability updates).  
+- However, only one worker can read/write hold data at a time.  
+- ✅ Pros: Simpler design, correctness guaranteed.  
+- ❌ Cons: Can block the system under **high load (e.g., thousands of requests)**, leading to **delays and possible request timeouts**.  
+- A more scalable approach could involve:  
+  - **Per-event locks** (lock only specific events instead of all events).  
+  - **Sharded locking strategy** to distribute load.  
+  - **Distributed locks** (e.g., Redis Redlock) for scaling across multiple instances.  
+  - **Database row-level locking** for fine-grained concurrency.  
+
+---
 
 ## 🚀 How to Run
 
