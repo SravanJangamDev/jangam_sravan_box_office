@@ -1,0 +1,19 @@
+from fastapi import status
+from enum import Enum
+
+HTTP_200 = status.HTTP_200_OK
+HTTP_201 = status.HTTP_201_CREATED
+HTTP_400 = status.HTTP_400_BAD_REQUEST
+HTTP_404 = status.HTTP_404_NOT_FOUND
+HTTP_401 = status.HTTP_401_UNAUTHORIZED
+HTTP_403 = status.HTTP_403_FORBIDDEN
+HTTP_409 = status.HTTP_409_CONFLICT
+HTTP_408 = status.HTTP_408_REQUEST_TIMEOUT
+HTTP_500 = status.HTTP_500_INTERNAL_SERVER_ERROR
+
+HTTP_BAD_REQUEST = "Bad request"
+
+
+class HTTPStatus(Enum):
+    SUCCESS = "Success"
+    FAILED = "Failed"

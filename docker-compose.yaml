@@ -1,0 +1,19 @@
+services:
+  box_office:
+    image: box_office:latest
+    container_name: box_office
+    ports:
+      - "${PORT:-8000}:8000"
+   
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-DEBUG}
+      LOG_DIRNAME: ${LOG_DIRNAME:-.log}
+      LOG_FILENAME: ${LOG_FILENAME:-log.log}
+      LOG_DEFAULT_NAME: ${LOG_DEFAULT_NAME:-"Box Office"}
+    restart: unless-stopped
+    networks:
+      - local_network
+
+networks:
+  local_network:
+    driver: bridge

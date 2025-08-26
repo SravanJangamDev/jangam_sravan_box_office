@@ -87,17 +87,22 @@ Note: Docker need to be installed.
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/ticket-booking-system.git
-cd ticket-booking-system
+git clone https://github.com/SravanJangamDev/jangam_sravan_box_office.git
+cd jangam_sravan_box_office
 ```
 ### 2. Build & Launch with Docker
 ```
 chmod +x launch.sh
 ./launch.sh
+
+Application runs at port 8000
 ```
 ---
 
 ## 🚀 Sample Use
+
+** Postman collectio **: (./box-office.postman_collection.json)
+
 ### Create event
 ```
 - curl -X POST http://localhost:8000/events \
@@ -118,3 +123,5 @@ chmod +x launch.sh
   -H "Content-Type: application/json" \
   -d '{"hold_id": "abc123", "payment_token": "xyz789"}'
 ```
+
+
